@@ -7,7 +7,7 @@ import java.net.Socket;
 public class MTServer {
     public static void main(String[] args) {
         final int serverPort = 7890;
-        System.out.println("Multi-Threaded Server is starting...");
+        System.out.println("Server for TCP Communicator - Starting...");
 
         try (ServerSocket serverSocket = new ServerSocket(serverPort)) {
             System.out.println("Server is listening on port " + serverPort);
@@ -26,7 +26,7 @@ public class MTServer {
                 }
             }
         } catch (IOException ioEx) {
-            System.err.println("Could not start server on port " + serverPort + ": " + ioEx.getMessage());
+            System.err.println("Could not listen on port " + serverPort + ": " + ioEx.getMessage());
         }
     }
 }

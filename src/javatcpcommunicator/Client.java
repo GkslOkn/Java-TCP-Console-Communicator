@@ -14,7 +14,7 @@ public class Client {
         final String hostName = "localhost";
         final int port = 7890;
         
-        System.out.println("Starting TCP Communicator Client");
+        System.out.println("Client for TCP Communicator - Starting...");
         
         try(
             Socket socket = new Socket(hostName, port);
@@ -23,12 +23,11 @@ public class Client {
             BufferedReader sysBuffReader = new BufferedReader(new InputStreamReader(System.in));
         ) {
             String clientWelcomeMessage = ReceiveMessage(inputStream);
+            System.out.println("Connected to the server. Type 'bye' (without the quote marks) to exit.");
             System.out.println("Server: " + clientWelcomeMessage);
-            System.out.println("Connected. Type 'bye' to exit.");
             
             String userMessage;
             while ((userMessage = sysBuffReader.readLine()) != null) {
-                // Send message to server using framing
                 SendMessage(outputStream, userMessage);
 
                 if ("bye".equalsIgnoreCase(userMessage)) {
@@ -38,7 +37,7 @@ public class Client {
                 String serverResponse = ReceiveMessage(inputStream);
                 System.out.println("Server: " + serverResponse);
             }
-        } 
+        }
         catch (IOException ioEx) {
             System.err.println("Connection error: " + ioEx.getMessage());
         }
